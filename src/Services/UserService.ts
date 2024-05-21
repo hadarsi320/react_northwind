@@ -6,6 +6,17 @@ import { store, userActions } from "../Redux/store";
 import { CredentialsModel } from "../Models/CredentialsModel";
 
 class UserService {
+
+    public constructor() {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const container = jwtDecode<{user: UserModel}>(token);
+            const dbUser = container.user
+
+            const action = userActions.loginUser(dbUser);
+            store.dispatch(action);
+        }
+    }
 	
     public async register(user: UserModel) {
         const response = await axios.post<string>(appConfig.registerUrl, user)
@@ -14,6 +25,7 @@ class UserService {
         const dbUser = container.user;
         const action = userActions.registerUser(dbUser);
         store.dispatch(action);
+        localStorage.setItem('token', token);
     }
 
     public async login(credentials: CredentialsModel) {
@@ -23,6 +35,13 @@ class UserService {
         const dbUser = container.user;
         const action = userActions.loginUser(dbUser);
         store.dispatch(action);
+        localStorage.setItem('token', token);
+    }
+
+    public async logout() {
+        const action = userActions.logoutUser();
+        store.dispatch(action);
+        localStorage.removeItem('token')
     }
 
 }

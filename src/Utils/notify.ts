@@ -3,7 +3,7 @@ import { Notyf } from "notyf";
 class Notify {
 	public notyf = new Notyf({
         duration: 3000,
-        position: {x: "center", y: "top"},
+        position: {x: "right", y: "bottom"},
         dismissible: true
     })
 

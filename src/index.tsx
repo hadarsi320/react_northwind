@@ -5,6 +5,9 @@ import { Layout } from './Components/LayoutArea/Layout/Layout';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './Redux/store';
+import { interceptor } from './Utils/interceptor';
+
+interceptor.createInterceptor();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

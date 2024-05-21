@@ -1,3 +1,4 @@
+import { UserMenu } from "../../UserArea/UserMenu/UserMenu";
 import { Copyrights } from "../Copyrights/Copyrights";
 import { Header } from "../Header/Header";
 import { Menu } from "../Menu/Menu";
@@ -7,7 +8,10 @@ import "./Layout.css";
 export function Layout(): JSX.Element {
     return (
         <div className="Layout">
-			<header><Header /></header>
+			<header>
+                <Header />
+                <UserMenu />
+            </header>
             <aside><Menu /></aside>
             <main><Routing /></main>
             <footer><Copyrights /></footer>

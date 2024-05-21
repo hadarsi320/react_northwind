@@ -47,7 +47,7 @@ class ProductService {
     }
 
     public async deleteProduct(id: number) {
-        const response = await axios.delete(appConfig.productsUrl + id);
+        await axios.delete(appConfig.productsUrl + id);
         const action = productActions.deleteProduct(id);
         store.dispatch(action);
     }
